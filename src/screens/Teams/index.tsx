@@ -1,4 +1,5 @@
-import { Container, HeaderContainer, Title } from "./styles";
+import { Highlight } from "@components/Highlight";
+import { Container, HeaderContainer } from "./styles";
 import { Header } from "@components/Header";
 
 export const Teams = () => {
@@ -6,6 +7,7 @@ export const Teams = () => {
     <Container>
       <HeaderContainer>
         <Header />
+        <Highlight title="Equipes" subtitle="Preparem suas equipes" />
       </HeaderContainer>
     </Container>
   );
