@@ -8,7 +8,6 @@ export const Container = styled.View`
 export const HeaderContainer = styled.View`
   background-color: ${({ theme }) => theme.COLORS.PURPLE_500};
   width: 100%;
-
   padding-top: 54px;
   padding-bottom: 24px;
 `;
