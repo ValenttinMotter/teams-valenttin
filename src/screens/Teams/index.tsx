@@ -1,6 +1,7 @@
 import { Highlight } from "@components/Highlight";
-import { Container, HeaderContainer } from "./styles";
+import { Container, Content, HeaderContainer } from "./styles";
 import { Header } from "@components/Header";
+import { TeamCard } from "@components/TeamCard";
 
 export const Teams = () => {
   return (
@@ -9,6 +10,10 @@ export const Teams = () => {
         <Header />
         <Highlight title="Equipes" subtitle="Preparem suas equipes" />
       </HeaderContainer>
+
+      <Content>
+        <TeamCard title="Equipe 1" />
+      </Content>
     </Container>
   );
 };
