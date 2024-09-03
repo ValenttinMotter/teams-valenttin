@@ -1,12 +1,12 @@
-import { Image, Text, View } from "react-native";
-import Logo from "@assets/logo.png";
-import { Container, Title } from "./styles";
+import { Container, HeaderContainer, Title } from "./styles";
+import { Header } from "@components/Header";
 
 export const Teams = () => {
   return (
     <Container>
-      <Image source={Logo} />
-      <Title>Equipes</Title>
+      <HeaderContainer>
+        <Header />
+      </HeaderContainer>
     </Container>
   );
 };
