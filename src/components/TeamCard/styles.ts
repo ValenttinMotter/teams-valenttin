@@ -22,5 +22,6 @@ export const Title = styled.Text`
   color: ${({ theme }) => theme.COLORS.GRAY_500};
   font-size: 18px;
   font-weight: 400;
+  font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
   text-transform: capitalize;
 `;
