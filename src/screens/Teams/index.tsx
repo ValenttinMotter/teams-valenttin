@@ -11,7 +11,6 @@ export const Teams = () => {
         <Header />
         <Highlight title="Equipes" subtitle="Preparem suas equipes" />
       </HeaderContainer>
-
       <Content>
         <TeamCard title="Equipe 1" />
         <TeamCard title="Equipe 2" />

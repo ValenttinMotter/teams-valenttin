@@ -1,7 +1,8 @@
 import styled from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
+  background-color: ${({ theme }) => theme.COLORS.GRAY_100};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -16,12 +17,11 @@ export const Container = styled.View`
 
 export const Icon = styled(MaterialIcons).attrs(({ theme }) => ({
   size: 32,
+  color: theme.COLORS.GRAY_500,
 }))``;
 
 export const Title = styled.Text`
   color: ${({ theme }) => theme.COLORS.GRAY_500};
-  font-size: 18px;
-  font-weight: 400;
+  font-size: ${({ theme }) => theme.FONT_SIZE.LG}px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
-  text-transform: capitalize;
 `;
