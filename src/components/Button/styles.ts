@@ -1,17 +1,26 @@
 import { TouchableOpacity } from "react-native";
+import { css } from "styled-components";
 import styled from "styled-components/native";
 
-export const Container = styled.TouchableOpacity`
-  background-color: #31c667;
+type Props = {
+  type: "PRIMARY" | "SECONDARY";
+};
+
+export const Container = styled(TouchableOpacity)<Props>`
+  background-color: ${({ theme, type }) =>
+    type == "PRIMARY" ? theme.COLORS.GREEN_500 : theme.COLORS.RED};
   justify-content: center;
   align-items: center;
-  height: 55px;
-  max-width: 100%;
+  min-height: 55px;
+  max-height: 55px;
   border-radius: 8px;
+  padding: 18px;
 `;
 
 export const Text = styled.Text`
-  color: #f2f2f2;
-  font-size: 16px;
-  font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
+  ${({ theme }) => css`
+    color: ${theme.COLORS.GRAY_100};
+    font-family: ${theme.FONT_FAMILY.REGULAR};
+    font-size: ${theme.FONT_SIZE.MD}px;
+  `}
 `;

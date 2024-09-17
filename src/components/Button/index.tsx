@@ -1,9 +1,15 @@
+import { TouchableOpacityProps } from "react-native";
 import { Container, Text } from "./styles";
 
-export const Button = () => {
+type Props = TouchableOpacityProps & {
+  title: string;
+  type: "PRIMARY" | "SECONDARY";
+};
+
+export const Button = ({ title, type, ...rest }: Props) => {
   return (
-    <Container>
-      <Text>Criar uma nova equipe</Text>
+    <Container type="PRIMARY" {...rest}>
+      <Text>{title}</Text>
     </Container>
   );
 };
