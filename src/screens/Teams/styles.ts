@@ -13,5 +13,6 @@ export const HeaderContainer = styled.View`
 `;
 
 export const Content = styled.View`
+  flex: 1;
   padding: 24px;
 `;
