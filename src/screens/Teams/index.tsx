@@ -26,7 +26,7 @@ export const Teams = () => {
           )}
           contentContainerStyle={teams.length === 0 && { flex: 1 }}
         />
-        <Button title="Criar uma nova equipe" type="PRIMARY" />
+        <Button title="Criar uma nova equipe" />
       </Content>
     </Container>
   );
