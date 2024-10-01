@@ -19,6 +19,7 @@ export const Container = styled(TouchableOpacity)<Props>`
   align-items: center;
 
   padding: 18px;
+  width: 100%;
 `;
 
 export const Text = styled.Text`
