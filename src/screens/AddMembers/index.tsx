@@ -3,6 +3,7 @@ import { Container, Content, HeaderContainer } from "./styles";
 import { Highlight } from "@components/Highlight";
 import { Button } from "@components/Button";
 import { Input } from "@components/Input";
+import { ButtonIcon } from "@components/ButtonIcon";
 
 export const AddMembers = () => {
   return (
@@ -16,6 +17,7 @@ export const AddMembers = () => {
       </HeaderContainer>
       <Content>
         <Input placeholder={"Adicione um membro"} />
+        <ButtonIcon icon={"add-circle-outline"} />
         <Button title="Deletar equipe" type="SECONDARY"></Button>
       </Content>
     </Container>
