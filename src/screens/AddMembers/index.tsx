@@ -1,5 +1,5 @@
 import { Header } from "@components/Header";
-import { Container, Content, HeaderContainer } from "./styles";
+import { Container, Content, HeaderContainer, InputContainer } from "./styles";
 import { Highlight } from "@components/Highlight";
 import { Button } from "@components/Button";
 import { Input } from "@components/Input";
@@ -16,8 +16,20 @@ export const AddMembers = () => {
         />
       </HeaderContainer>
       <Content>
-        <Input placeholder={"Adicione um membro"} />
-        <ButtonIcon icon={"add-circle-outline"} />
+        <InputContainer>
+          <Input
+            style={{
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+              borderRightWidth: 0,
+            }}
+            placeholder={"Adicione um membro"}
+          />
+          <ButtonIcon
+            style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+            icon={"add-circle-outline"}
+          />
+        </InputContainer>
         <Button title="Deletar equipe" type="SECONDARY"></Button>
       </Content>
     </Container>

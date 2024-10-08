@@ -7,10 +7,10 @@ type Props = TouchableOpacityProps & {
   type?: ButtonIconTypeStyleProps;
 };
 
-export const ButtonIcon = ({ type = "PRIMARY", ...rest }: Props) => {
+export const ButtonIcon = ({ icon, type = "PRIMARY", ...rest }: Props) => {
   return (
     <Container type={type} {...rest}>
-      <Icon name="add-circle-outline" />
+      <Icon name={icon} />
     </Container>
   );
 };
