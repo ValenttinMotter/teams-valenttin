@@ -22,3 +22,7 @@ export const Content = styled.View`
 export const InputContainer = styled.View`
   flex-direction: row;
 `;
+
+export const Tabs = styled.View`
+  margin: 32px 0;
+`;
