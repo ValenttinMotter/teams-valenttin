@@ -1,21 +1,40 @@
 import { TouchableOpacity } from "react-native";
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export type ButtonIconTypeStyleProps = "PRIMARY" | "SECONDARY";
+export type ButtonIconSizeStyleProps = "MD" | "SM";
+export type ButtonIconBorderRadiusStyleProps = "RIGHT" | "FULL";
 
 type Props = {
   type: ButtonIconTypeStyleProps;
+  size: ButtonIconSizeStyleProps;
+  borderRadius: ButtonIconBorderRadiusStyleProps;
 };
 
 export const Container = styled(TouchableOpacity)<Props>`
   width: 54px;
   height: 54px;
-  background-color: ${({ theme, type }) =>
-    type === "PRIMARY" ? theme.COLORS.GREEN_500 : theme.COLORS.RED};
+
+  ${({ size }) =>
+    size === "SM" &&
+    css`
+      width: 44px;
+      height: 44px;
+    `};
+
+  border-radius: 8px;
+  ${({ borderRadius }) =>
+    borderRadius === "RIGHT" &&
+    css`
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    `};
+
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
+  background-color: ${({ theme, type }) =>
+    type === "PRIMARY" ? theme.COLORS.GREEN_500 : theme.COLORS.RED};
 `;
 
 export const Icon = styled(MaterialIcons).attrs(({ theme }) => ({
