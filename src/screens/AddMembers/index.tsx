@@ -13,6 +13,7 @@ import { ButtonIcon } from "@components/ButtonIcon";
 import { Tab } from "@components/Tab";
 import { useState } from "react";
 import { FlatList } from "react-native";
+import { Tag } from "@components/Tag";
 
 export const AddMembers = () => {
   const [tab, setTab] = useState("Titular");
@@ -54,6 +55,7 @@ export const AddMembers = () => {
             )}
             horizontal
           />
+          <Tag text={0} />
         </Tabs>
         <Button title="Deletar equipe" type="SECONDARY"></Button>
       </Content>
