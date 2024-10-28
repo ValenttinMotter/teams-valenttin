@@ -12,7 +12,6 @@ export const Container = styled.View`
   border-radius: 8px;
   flex-direction: row;
   align-items: center;
-
   padding-left: 12px;
   margin-bottom: 16px;
 `;

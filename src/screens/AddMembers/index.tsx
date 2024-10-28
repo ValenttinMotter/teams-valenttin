@@ -76,7 +76,6 @@ export function AddMembers() {
             members.length === 0 && { flex: 1 },
           ]}
         />
-
         <Button title="Deletar equipe" type="SECONDARY" />
       </Content>
     </Container>
