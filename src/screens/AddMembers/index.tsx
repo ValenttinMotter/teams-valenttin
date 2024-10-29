@@ -18,20 +18,25 @@ import {
   InputContainer,
   Tabs,
 } from "./styles";
+import { useRoute } from "@react-navigation/native";
+
+type RouteParams = {
+  team: string;
+};
 
 export function AddMembers() {
   const [tab, setTab] = useState("Titular");
   const [members, setMembers] = useState([]);
+
+  const route = useRoute();
+  const { team } = route.params as RouteParams;
 
   return (
     <Container>
       <HeaderContainer>
         <Header showBackButton />
 
-        <Highlight
-          title="Equipes 1"
-          subtitle="Adicione os titulares e reservas"
-        />
+        <Highlight title={team} subtitle="Adicione os titulares e reservas" />
       </HeaderContainer>
 
       <Content>
