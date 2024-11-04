@@ -7,19 +7,22 @@ import { useState } from "react";
 import { FlatList } from "react-native";
 import { ListEmpty } from "@components/ListEmpty";
 import { useNavigation } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export const Teams = () => {
   const [teams, setTeams] = useState<string[]>([]);
 
   const navigation = useNavigation();
 
+  const insets = useSafeAreaInsets();
+
   function handleNewTeam() {
     navigation.navigate("newTeam");
   }
 
   return (
-    <Container>
-      <HeaderContainer>
+    <Container style={{ paddingBottom: insets.bottom }}>
+      <HeaderContainer style={{ paddingTop: insets.top }}>
         <Header />
         <Highlight title="Equipes" subtitle="Preparem suas equipes" />
       </HeaderContainer>

@@ -19,6 +19,7 @@ import {
   Tabs,
 } from "./styles";
 import { useRoute } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type RouteParams = {
   team: string;
@@ -28,12 +29,14 @@ export function AddMembers() {
   const [tab, setTab] = useState("Titular");
   const [members, setMembers] = useState([]);
 
+  const insets = useSafeAreaInsets();
+
   const route = useRoute();
   const { team } = route.params as RouteParams;
 
   return (
-    <Container>
-      <HeaderContainer>
+    <Container style={{ paddingBottom: insets.bottom }}>
+      <HeaderContainer style={{ paddingTop: insets.top }}>
         <Header showBackButton />
 
         <Highlight title={team} subtitle="Adicione os titulares e reservas" />
