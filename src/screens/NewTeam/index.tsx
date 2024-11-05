@@ -7,6 +7,8 @@ import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { createTeam } from "@storage/team/createTeam";
+import { Alert } from "react-native";
+import { AppError } from "@utils/AppError";
 
 export const NewTeam = () => {
   const [team, setTeam] = useState("");
@@ -16,8 +18,16 @@ export const NewTeam = () => {
   const navigation = useNavigation();
 
   async function handleAddMembers() {
-    await createTeam(team);
-    navigation.navigate("addMembers", { team });
+    try {
+      await createTeam(team);
+      navigation.navigate("addMembers", { team });
+    } catch (error) {
+      if (error instanceof AppError) {
+        Alert.alert("Nova equipe", error.message);
+      } else {
+        Alert.alert("Nova equipe", "Não foi possível criar uma nova equipe");
+      }
+    }
   }
 
   return (
