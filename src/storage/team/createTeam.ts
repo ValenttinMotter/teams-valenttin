@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { fetchAllTeams } from "./fetchAllTeams";
-import { TEAM_COLLECTION } from "../storageConfig";
+import { TEAM_COLLECTION } from "@storage/storageConfig";
 
 export const createTeam = async (newTeam: string) => {
   try {

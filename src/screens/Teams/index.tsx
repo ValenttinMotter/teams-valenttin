@@ -3,12 +3,12 @@ import { Container, Content, HeaderContainer } from "./styles";
 import { Header } from "@components/Header";
 import { TeamCard } from "@components/TeamCard";
 import { Button } from "@components/Button";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { FlatList } from "react-native";
 import { ListEmpty } from "@components/ListEmpty";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { fetchAllTeams } from "src/storage/team/fetchAllTeams";
+import { fetchAllTeams } from "@storage/team/fetchAllTeams";
 
 export const Teams = () => {
   const [teams, setTeams] = useState<string[]>([]);
