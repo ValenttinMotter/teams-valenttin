@@ -19,6 +19,10 @@ export const NewTeam = () => {
 
   async function handleAddTeam() {
     try {
+      if (team.trim().length == 0) {
+        return Alert.alert("Nova Equipe", "Informe o nome da equipe.");
+      }
+
       await createTeam(team);
       navigation.navigate("addMembers", { team });
     } catch (error) {

@@ -21,6 +21,10 @@ export const Teams = () => {
     navigation.navigate("newTeam");
   }
 
+  function handleNavigateToMembers(team: string) {
+    navigation.navigate("addMembers", { team });
+  }
+
   async function handleFetchAllTeams() {
     try {
       const data = await fetchAllTeams();
@@ -46,7 +50,12 @@ export const Teams = () => {
         <FlatList
           data={teams}
           keyExtractor={(item) => item}
-          renderItem={({ item }) => <TeamCard title={item} />}
+          renderItem={({ item }) => (
+            <TeamCard
+              title={item}
+              onPress={() => handleNavigateToMembers(item)}
+            />
+          )}
           ListEmptyComponent={() => (
             <ListEmpty message="Comece criando uma equipe!" />
           )}
