@@ -17,7 +17,7 @@ export const NewTeam = () => {
 
   const navigation = useNavigation();
 
-  async function handleAddMembers() {
+  async function handleAddTeam() {
     try {
       await createTeam(team);
       navigation.navigate("addMembers", { team });
@@ -41,7 +41,7 @@ export const NewTeam = () => {
       </HeaderContainer>
       <Content>
         <Input placeholder={"Nome da equipe"} onChangeText={setTeam} />
-        <Button title="Criar equipe" onPress={handleAddMembers}></Button>
+        <Button title="Criar equipe" onPress={handleAddTeam}></Button>
       </Content>
     </Container>
   );
