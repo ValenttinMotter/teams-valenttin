@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FlatList } from "react-native";
+import { Alert, FlatList } from "react-native";
 
 import { Header } from "@components/Header";
 import { Highlight } from "@components/Highlight";
@@ -20,6 +20,8 @@ import {
 } from "./styles";
 import { useRoute } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { createMemberOnTeam } from "@storage/member/createMemberOnTeam";
+import { AppError } from "@utils/AppError";
 
 type RouteParams = {
   team: string;
@@ -28,11 +30,40 @@ type RouteParams = {
 export function AddMembers() {
   const [tab, setTab] = useState("Titular");
   const [members, setMembers] = useState([]);
+  const [newMemberName, setNewMemberName] = useState("");
 
   const insets = useSafeAreaInsets();
 
   const route = useRoute();
   const { team } = route.params as RouteParams;
+
+  async function handleAddMember() {
+    if (newMemberName.trim().length === 0) {
+      return Alert.alert(
+        "Novo membro",
+        "Informe o nome do membro para adicionar"
+      );
+    }
+
+    const newMember = {
+      name: newMemberName,
+      team: team,
+      type: tab,
+    };
+
+    try {
+      await createMemberOnTeam(newMember, team);
+    } catch (error) {
+      if (error instanceof AppError) {
+        Alert.alert("Novo membro", error.message);
+      } else {
+        Alert.alert(
+          "Novo membro",
+          "Não foi possível adicionar um novo membro."
+        );
+      }
+    }
+  }
 
   return (
     <Container style={{ paddingBottom: insets.bottom }}>
@@ -47,9 +78,15 @@ export function AddMembers() {
           <Input
             style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
             placeholder="Adicione um membro"
+            value={newMemberName}
+            onChangeText={setNewMemberName}
           />
 
-          <ButtonIcon borderRadius="RIGHT" icon="add-circle-outline" />
+          <ButtonIcon
+            borderRadius="RIGHT"
+            icon="add-circle-outline"
+            onPress={handleAddMember}
+          />
         </InputContainer>
 
         <Tabs>
