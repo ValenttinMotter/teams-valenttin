@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert, FlatList } from "react-native";
 
 import { Header } from "@components/Header";
@@ -22,6 +22,8 @@ import { useRoute } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { createMemberOnTeam } from "@storage/member/createMemberOnTeam";
 import { AppError } from "@utils/AppError";
+import { getMembersByTypeAndTeam } from "@storage/member/getMembersByTypeAndTeam";
+import { MemberStorageDTO } from "@storage/member/MemberStorageDTO";
 
 type RouteParams = {
   team: string;
@@ -29,7 +31,7 @@ type RouteParams = {
 
 export function AddMembers() {
   const [tab, setTab] = useState("Titular");
-  const [members, setMembers] = useState([]);
+  const [members, setMembers] = useState<MemberStorageDTO[]>([]);
   const [newMemberName, setNewMemberName] = useState("");
 
   const insets = useSafeAreaInsets();
@@ -53,6 +55,8 @@ export function AddMembers() {
 
     try {
       await createMemberOnTeam(newMember, team);
+      setNewMemberName("");
+      fetchMembersByTypeAndTeam();
     } catch (error) {
       if (error instanceof AppError) {
         Alert.alert("Novo membro", error.message);
@@ -64,6 +68,17 @@ export function AddMembers() {
       }
     }
   }
+
+  async function fetchMembersByTypeAndTeam() {
+    try {
+      const membersByTeam = await getMembersByTypeAndTeam(team, tab);
+      setMembers(membersByTeam);
+    } catch (error) {}
+  }
+
+  useEffect(() => {
+    fetchMembersByTypeAndTeam();
+  }, [tab]);
 
   return (
     <Container style={{ paddingBottom: insets.bottom }}>
@@ -80,6 +95,9 @@ export function AddMembers() {
             placeholder="Adicione um membro"
             value={newMemberName}
             onChangeText={setNewMemberName}
+            autoCorrect={false}
+            returnKeyType="done"
+            onSubmitEditing={handleAddMember}
           />
 
           <ButtonIcon
@@ -108,9 +126,9 @@ export function AddMembers() {
 
         <FlatList
           data={members}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
-            <MemberCard name={item} onRemove={() => {}} />
+            <MemberCard name={item.name} onRemove={() => {}} />
           )}
           ListEmptyComponent={() => (
             <ListEmpty message="Não há membros adicionados." />

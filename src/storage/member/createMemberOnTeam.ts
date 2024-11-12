@@ -1,27 +1,17 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MEMBER_COLLECTION } from "@storage/storageConfig";
 import { AppError } from "@utils/AppError";
-
-type MemberStorageDTO = {
-  name: string;
-  type: string;
-  team: string;
-};
+import { MemberStorageDTO } from "./MemberStorageDTO";
+import { getMembersByTeam } from "./getMembersByTeam";
 
 export async function createMemberOnTeam(
   newMember: MemberStorageDTO,
   team: string
 ) {
   try {
-    const storedMembers = await AsyncStorage.getItem(
-      `${MEMBER_COLLECTION}-${team}`
-    );
+    const storedMembers = await getMembersByTeam(team);
 
-    const members: MemberStorageDTO[] = storedMembers
-      ? JSON.parse(storedMembers)
-      : [];
-
-    const membersAlreadyExists = members.filter(
+    const membersAlreadyExists = storedMembers.filter(
       (member) => member.name === newMember.name
     );
 
@@ -29,7 +19,7 @@ export async function createMemberOnTeam(
       throw new AppError("Este membro já está adicionado.");
     }
 
-    const storage = JSON.stringify([...members, newMember]);
+    const storage = JSON.stringify([...storedMembers, newMember]);
 
     await AsyncStorage.setItem(`${MEMBER_COLLECTION}-${team}`, storage);
   } catch (error) {
